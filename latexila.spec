@@ -10,7 +10,7 @@ URL:		http://projects.gnome.org/latexila/
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	enchant-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gsettings-desktop-schemas
 BuildRequires:	gtk+3-devel >= 3.6.0
