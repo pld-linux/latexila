@@ -1,38 +1,51 @@
 Summary:	Integrated LaTeX Environment for the GNOME desktop
+Summary(pl.UTF-8):	Zintegrowane środowisko LaTeXowe dla GNOME
 Name:		latexila
-Version:	2.8.2
+Version:	3.18.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/2.8/%{name}-%{version}.tar.xz
-# Source0-md5:	a76efc40fdd84b7b37e06f70c2aaa349
-URL:		http://projects.gnome.org/latexila/
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.18/%{name}-%{version}.tar.xz
+# Source0-md5:	951f2f2f14ad9ce18b8470ffef998de3
+URL:		https://wiki.gnome.org/Apps/LaTeXila
 BuildRequires:	autoconf >= 2.64
-BuildRequires:	automake >= 1:1.11
-BuildRequires:	enchant-devel
+BuildRequires:	automake >= 1:1.12.5
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.36.0
-BuildRequires:	gsettings-desktop-schemas
-BuildRequires:	gtk+3-devel >= 3.6.0
-BuildRequires:	gtksourceview3-devel >= 3.8.0
-BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libgee0.6-devel
+BuildRequires:	glib2-devel >= 1:2.40
+BuildRequires:	gnome-common
+BuildRequires:	gobject-introspection-devel >= 1.30.0
+BuildRequires:	gsettings-desktop-schemas-devel
+BuildRequires:	gspell-devel >= 0.1
+BuildRequires:	gspell-devel < 0.2 
+BuildRequires:	gtk+3-devel >= 3.14
+BuildRequires:	gtk-doc >= 1.14
+BuildRequires:	gtksourceview3-devel >= 3.18
+BuildRequires:	intltool >= 0.50.1
+BuildRequires:	libgee-devel >= 0.10
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.581
-BuildRequires:	vala >= 2:0.20.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	vala >= 2:0.26
+BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.40
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.36.0
+Requires:	glib2 >= 1:2.40
 Requires:	gsettings-desktop-schemas
-Requires:	gtk+3 >= 3.6.0
+Requires:	gspell >= 0.1
+Requires:	gtk+3 >= 3.14
+Requires:	gtksourceview3 >= 3.18
 Requires:	hicolor-icon-theme
+Requires:	libgee >= 0.10
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 LaTeXila is an Integrated LaTeX Environment for GNOME.
+
+%description -l pl.UTF-8
+LaTeXila to zintegrowane środowisko LaTeXowe dla GNOME.
 
 %prep
 %setup -q
@@ -45,7 +58,8 @@ LaTeXila is an Integrated LaTeX Environment for GNOME.
 %{__autoheader}
 %{__automake}
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
@@ -72,11 +86,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
+%doc AUTHORS MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/latexila
+%{_datadir}/appdata/latexila.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.latexila.gschema.xml
 %{_datadir}/latexila
 %{_desktopdir}/latexila.desktop
+%{_iconsdir}/hicolor/*x*/apps/latexila.png
+%{_iconsdir}/hicolor/scalable/apps/latexila.svg
 %{_mandir}/man1/latexila.1*
-%{_iconsdir}/hicolor/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.svg
+%{_gtkdocdir}/latexila
