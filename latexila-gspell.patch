@@ -1,0 +1,63 @@
+--- latexila-3.18.2/configure.ac.orig	2015-12-19 17:38:19.000000000 +0100
++++ latexila-3.18.2/configure.ac	2015-12-27 10:52:50.120826126 +0100
+@@ -102,10 +102,6 @@
+ 	AC_MSG_ERROR([gspell-1 ${GSPELL_REQUIRED_VERSION} required.])
+ fi
+ 
+-if ! pkg-config --max-version=0.1.99 gspell-1; then
+-	AC_MSG_ERROR([gspell-1 ${GSPELL_REQUIRED_VERSION} required.])
+-fi
+-
+ if ! pkg-config gsettings-desktop-schemas; then
+ 	AC_MSG_ERROR([gsettings-desktop-schemas required.])
+ fi
+--- latexila-3.18.2/src/document_view.vala.orig	2015-12-19 17:37:05.000000000 +0100
++++ latexila-3.18.2/src/document_view.vala	2015-12-27 12:57:40.387178476 +0100
+@@ -258,7 +258,7 @@
+         if (lang_key[0] == '\0')
+             return null;
+ 
+-        return Gspell.Language.from_key (lang_key);
++        return Gspell.Language.lookup (lang_key);
+     }
+ 
+     public void setup_inline_spell_checker ()
+@@ -299,7 +299,8 @@
+ 
+         Gspell.LanguageChooserDialog dialog =
+             new Gspell.LanguageChooserDialog (this.get_toplevel () as Window,
+-                _spell_checker.get_language ());
++                _spell_checker.get_language (),
++                DialogFlags.MODAL | DialogFlags.DESTROY_WITH_PARENT);
+ 
+         dialog.run ();
+ 
+@@ -317,7 +318,7 @@
+ 
+         unowned Gspell.Language? lang = _spell_checker.get_language ();
+         if (lang != null)
+-            doc.set_metadata (METADATA_ATTRIBUTE_SPELL_LANGUAGE, lang.to_key ());
++            doc.set_metadata (METADATA_ATTRIBUTE_SPELL_LANGUAGE, lang.get_code ());
+         else
+             doc.set_metadata (METADATA_ATTRIBUTE_SPELL_LANGUAGE, null);
+     }
+--- latexila-3.18.2/src/preferences_dialog.vala.orig	2015-12-19 17:37:05.000000000 +0100
++++ latexila-3.18.2/src/preferences_dialog.vala	2015-12-27 13:05:46.810491380 +0100
+@@ -309,7 +309,7 @@
+             if (selected_lang != null)
+             {
+                 editor_settings.set_string ("spell-checking-language",
+-                    selected_lang.to_key ());
++                    selected_lang.get_code ());
+             }
+             else
+                 editor_settings.set_string ("spell-checking-language", "");
+@@ -333,7 +333,7 @@
+         unowned Gspell.Language? lang = null;
+         string lang_key = editor_settings.get_string ("spell-checking-language");
+         if (lang_key[0] != '\0')
+-            lang = Gspell.Language.from_key (lang_key);
++            lang = Gspell.Language.lookup (lang_key);
+ 
+         Gspell.Checker checker = new Gspell.Checker (lang);
+         spell_language_button.set_language (checker.get_language ());

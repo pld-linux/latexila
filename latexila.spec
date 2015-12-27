@@ -1,12 +1,13 @@
 Summary:	Integrated LaTeX Environment for the GNOME desktop
 Summary(pl.UTF-8):	Zintegrowane środowisko LaTeXowe dla GNOME
 Name:		latexila
-Version:	3.18.1
+Version:	3.18.2
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	951f2f2f14ad9ce18b8470ffef998de3
+# Source0-md5:	9fe44a13d9a574a07dd70a9cd5cf5d6a
+Patch0:		%{name}-gspell.patch
 URL:		https://wiki.gnome.org/Apps/LaTeXila
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.12.5
@@ -15,8 +16,7 @@ BuildRequires:	glib2-devel >= 1:2.40
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gspell-devel >= 0.1
-BuildRequires:	gspell-devel < 0.2 
+BuildRequires:	gspell-devel >= 0.2
 BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	gtksourceview3-devel >= 3.18
@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.581
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala >= 2:0.26
+BuildRequires:	vala-gspell >= 0.2
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	desktop-file-utils
@@ -49,6 +50,7 @@ LaTeXila to zintegrowane środowisko LaTeXowe dla GNOME.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
