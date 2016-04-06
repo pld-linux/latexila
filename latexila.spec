@@ -1,13 +1,12 @@
 Summary:	Integrated LaTeX Environment for the GNOME desktop
 Summary(pl.UTF-8):	Zintegrowane środowisko LaTeXowe dla GNOME
 Name:		latexila
-Version:	3.18.2
+Version:	3.20.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.18/%{name}-%{version}.tar.xz
-# Source0-md5:	9fe44a13d9a574a07dd70a9cd5cf5d6a
-Patch0:		%{name}-gspell.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.20/%{name}-%{version}.tar.xz
+# Source0-md5:	e90dd71931b35a14867554d2d9042bb3
 URL:		https://wiki.gnome.org/Apps/LaTeXila
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.12.5
@@ -28,6 +27,7 @@ BuildRequires:	rpmbuild(macros) >= 1.581
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala >= 2:0.26
 BuildRequires:	vala-gspell >= 0.2
+BuildRequires:	vala-libgee
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	desktop-file-utils
@@ -50,7 +50,6 @@ LaTeXila to zintegrowane środowisko LaTeXowe dla GNOME.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -90,11 +89,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/latexila
-%{_datadir}/appdata/latexila.appdata.xml
+%{_datadir}/appdata/org.gnome.latexila.appdata.xml
 %{_datadir}/glib-2.0/schemas/org.gnome.latexila.gschema.xml
 %{_datadir}/latexila
-%{_desktopdir}/latexila.desktop
+%{_desktopdir}/org.gnome.latexila.desktop
 %{_iconsdir}/hicolor/*x*/apps/latexila.png
 %{_iconsdir}/hicolor/scalable/apps/latexila.svg
 %{_mandir}/man1/latexila.1*
 %{_gtkdocdir}/latexila
+%{_datadir}/dbus-1/services/org.gnome.latexila.service
