@@ -15,8 +15,8 @@ BuildRequires:	glib2-devel >= 1:2.40
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gsettings-desktop-schemas-devel
-BuildRequires:	gspell-devel >= 0.2
-BuildRequires:	gtk+3-devel >= 3.14
+BuildRequires:	gspell-devel >= 1.0
+BuildRequires:	gtk+3-devel >= 3.20
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	gtksourceview3-devel >= 3.18
 BuildRequires:	intltool >= 0.50.1
@@ -26,8 +26,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.581
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala >= 2:0.26
-BuildRequires:	vala-gspell >= 0.2
-BuildRequires:	vala-libgee
+BuildRequires:	vala-gspell >= 1.0
+BuildRequires:	vala-libgee >= 0.10
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	desktop-file-utils
@@ -35,8 +35,8 @@ Requires(post,postun):	glib2 >= 1:2.40
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	glib2 >= 1:2.40
 Requires:	gsettings-desktop-schemas
-Requires:	gspell >= 0.1
-Requires:	gtk+3 >= 3.14
+Requires:	gspell >= 1.0
+Requires:	gtk+3 >= 3.20
 Requires:	gtksourceview3 >= 3.18
 Requires:	hicolor-icon-theme
 Requires:	libgee >= 0.10
