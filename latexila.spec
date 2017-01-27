@@ -1,12 +1,12 @@
 Summary:	Integrated LaTeX Environment for the GNOME desktop
 Summary(pl.UTF-8):	Zintegrowane środowisko LaTeXowe dla GNOME
 Name:		latexila
-Version:	3.20.0
+Version:	3.22.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	e90dd71931b35a14867554d2d9042bb3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.22/%{name}-%{version}.tar.xz
+# Source0-md5:	04278517469c8abc57bf59f8f7bd3d23
 URL:		https://wiki.gnome.org/Apps/LaTeXila
 BuildRequires:	autoconf >= 2.64
 BuildRequires:	automake >= 1:1.12.5
