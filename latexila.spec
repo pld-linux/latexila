@@ -1,8 +1,9 @@
+# NOTE: see gnome-latex.spec (after 3.26.x project has been renamed)
 Summary:	Integrated LaTeX Environment for the GNOME desktop
 Summary(pl.UTF-8):	Zintegrowane środowisko LaTeXowe dla GNOME
 Name:		latexila
 Version:	3.26.1
-Release:	1
+Release:	0.1
 License:	GPL v3+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/latexila/3.26/%{name}-%{version}.tar.xz
